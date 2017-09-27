@@ -16,14 +16,14 @@ define amix_vimrc::vimrc ( $user = $title, $awesome_version = true ) {
   $path = '/bin'
 
   if $awesome_version {
-    exec { 'install_awesome_vimrc':
+    exec { "${user}_install_awesome_vimrc":
       path    => $path,
       command => 'sh ~/.vim_runtime/install_awesome_vimrc.sh',
       user    => $user,
       require => Vcsrepo["$home/.vim_runtime"],
     }
   } else {
-    exec { 'install_basic_vimrc':
+    exec { "${user}_install_basic_vimrc":
       path    => $path,
       command => 'sh ~/.vim_runtime/install_basic_vimrc.sh',
       user    => $user,
